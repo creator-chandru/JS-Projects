@@ -1,0 +1,29 @@
+body{
+    background-color:rgb(2, 34, 61);
+    color:white;
+}
+
+.attempt{
+    display:block;
+    margin:20% auto;
+    border:none;
+    padding:30px;
+    font-size:2rem;
+    border-radius:10px;
+    cursor:pointer;
+    transition:all 0.2s ease-in;
+}
+
+.attempt:hover .arrow{
+    display:inline-block;
+    transform:translateX(10px);
+    color:white;
+    text-shadow: 2px 2px rgb(2, 77, 139);
+}
+
+.attempt:hover{
+    color:white;
+    text-shadow: 2px 2px rgb(5, 29, 49);
+    border:5px solid orange;
+    background-color:rgb(7, 30, 115);
+}
