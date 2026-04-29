@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js - Drumkit</title>
+    <link rel="stylesheet" href="DRUMKIT.CSS">
+</head>
+<body>
+    <div class="container">
+        <div data-keys = "65" class="key">
+            <p>A</p>
+        </div>
+        <div data-keys = "83" class="key">
+            <p>S</p>
+        </div>
+        <div data-keys = "68" class="key">
+            <p>D</p>
+        </div>
+        <div data-keys = "70" class="key">
+            <p>F</p>
+        </div>
+        <div data-keys = "71" class="key">
+            <p>G</p>
+        </div>
+        <div data-keys = "72" class="key">
+            <p>H</p>
+        </div>
+        <div data-keys = "74" class="key">
+            <p>J</p>
+        </div>
+        <div data-keys = "75" class="key">
+            <p>K</p>
+        </div>
+        <div data-keys = "73" class="key">
+            <p>I</p>
+        </div>
+    </div>
+    <audio data-keys = "65" src="sounds/boom.wav"></audio>
+    <audio data-keys = "83" src="sounds/clap.wav"></audio>
+    <audio data-keys = "68" src="sounds/hihat.wav"></audio>
+    <audio data-keys = "70" src="sounds/kick.wav"></audio>
+    <audio data-keys = "71" src="sounds/openhat.wav"></audio>
+    <audio data-keys = "72" src="sounds/ride.wav"></audio>
+    <audio data-keys = "74" src="sounds/snare.wav"></audio>
+    <audio data-keys = "75" src="sounds/tink.wav"></audio>
+    <audio data-keys = "73" src="sounds/tom.wav"></audio>
+    <script>
+        window.addEventListener('keydown',(e)=>{
+            const audio = document.querySelector(`audio[data-keys ="${e.keyCode}"]`);
+            if(!audio){
+                return;
+            }
+            audio.currentTime = 0;
+            audio.play();
+            const div = document.querySelector(`div[data-keys ="${e.keyCode}"]`);
+            div.classList.add('key-active');
+        });
+        function removeTransition(e){
+            if(e.propertyName !== 'transform') return;
+            this.classList.remove('key-active');
+        }
+        const keys = document.querySelectorAll('.key');
+        keys.forEach((key)=>{
+            key.addEventListener('transitionend',removeTransition);
+        })
+    </script>
+</body>
+</html>
