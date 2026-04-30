@@ -1,4 +1,4 @@
-const Questions = [
+export const Questions = [
     {
         question: "What Does JS bring to Web Development?",
         options:['layout','interactivity','style','structure'],
@@ -27,6 +27,3 @@ const Questions = [
 ];
 
 const attemptBtn = document.querySelector('.attempt');
-attemptBtn.addEventListener('click',()=>{
-    let questionHTML = '';
-});
