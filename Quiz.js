@@ -25,5 +25,3 @@ export const Questions = [
         answer:'crazy'
     }
 ];
-
-const attemptBtn = document.querySelector('.attempt');
