@@ -1,4 +1,8 @@
 import {Questions} from './Quiz.js'
+
+const userAnswers = [];
+let score = 0;
+
 function shuffle(array){
     for(let i = array.length-1 ; i > 0; i--){
         let j = Math.floor(Math.random() * (i+1));
@@ -9,13 +13,13 @@ function shuffle(array){
     return array;
 }
 const shuffledQuestions = shuffle(Questions);
-console.log(shuffledQuestions);
 
 //the above code gives us the shuffled Questions array each time.
 
 const questions = document.querySelector('.questions-container');
 let currentQuestion;
 let questionOptions;
+
 
 function generateHTML(i){
     let questionHTML = `<h2 class="question-number">Question ${i+1}</h2>
@@ -38,11 +42,33 @@ function generateHTML(i){
                         <button class="submit">Save & Submit</button>
                         <button class="reset">Reset</button>
                     </div>`;
-    questions.innerHTML += questionHTML;
+    questions.innerHTML = questionHTML;
 }
-for(let i = 0; i < Questions.length ; i++){
-    currentQuestion = shuffledQuestions[i];
-    console.log(currentQuestion);
+
+
+let currentIndex = 0;
+
+function submitAction(currentIndex){
+    const submitButton = document.querySelector('.submit');
+    submitButton.addEventListener('click',()=>{
+        let userInput = document.querySelector(`input[name = question-${currentIndex + 1}]:checked`);
+        userAnswers.push(userInput.value);
+        if(userInput.value === currentQuestion.answer){
+            score+=1;
+        }
+        if(currentIndex < Questions.length){
+            giveInputsToGenerate(++currentIndex);
+        }else{
+            return;
+        }
+    });
+}
+
+function giveInputsToGenerate(currentIndex){
+    currentQuestion = shuffledQuestions[currentIndex];
     questionOptions = currentQuestion.options;
-    generateHTML(i);
+    generateHTML(currentIndex);
+    submitAction(currentIndex);
 }
+
+giveInputsToGenerate(currentIndex);
