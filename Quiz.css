@@ -85,3 +85,29 @@ a{
     background-color:red;
     color:white;
 }
+
+.result-container{
+    width:50%;
+    border:2px solid gold;
+    padding:30px;
+    border-radius:10px;
+    margin:auto;
+    text-align:center;
+}
+
+.result{
+    text-transform:uppercase;
+    font-family:'Times New Roman', Times, serif;
+    font-size:3rem;
+    color:gold;
+}
+
+.score-board{
+    color:silver;
+    font-size:4rem;
+}
+
+.response{
+    text-transform:uppercase;
+    font-size:2rem;
+}

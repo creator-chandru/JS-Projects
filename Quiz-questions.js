@@ -56,15 +56,16 @@ function submitAction(currentIndex){
         if(userInput.value === currentQuestion.answer){
             score+=1;
         }
-        if(currentIndex < Questions.length){
-            giveInputsToGenerate(++currentIndex);
-        }else{
-            return;
-        }
+        giveInputsToGenerate(++currentIndex);
     });
 }
 
 function giveInputsToGenerate(currentIndex){
+    if(currentIndex === Questions.length){
+        console.log(score);
+        generateScoreHTML();
+        return;
+    }
     currentQuestion = shuffledQuestions[currentIndex];
     questionOptions = currentQuestion.options;
     generateHTML(currentIndex);
@@ -72,3 +73,14 @@ function giveInputsToGenerate(currentIndex){
 }
 
 giveInputsToGenerate(currentIndex);
+
+//this function generates the final score. 
+//add .result-container class to the finalResult button at submit time.
+function generateScoreHTML(){
+    let scoreHTML = `<h2 class="result">Your Score</h2>
+        <p class="score-board">${score}/${Questions.length}</p>
+        <p class="response">you are the goat</p>`
+    let finalResult = document.querySelector('.questions-container');
+    finalResult.classList.add('result-container');
+    finalResult.innerHTML = scoreHTML;
+}
