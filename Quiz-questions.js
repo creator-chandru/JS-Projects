@@ -55,6 +55,7 @@ function submitAction(currentIndex){
         warning.classList.remove('nullshown');
         if(!userInput){
             warning.classList.add('nullshown');
+            return;
         }
         if(userInput.value === currentQuestion.answer){
             score+=1;
