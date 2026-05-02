@@ -66,7 +66,6 @@ function submitAction(currentIndex){
 
 function giveInputsToGenerate(currentIndex){
     if(currentIndex === Questions.length){
-        console.log(score);
         generateScoreHTML();
         return;
     }
@@ -82,9 +81,15 @@ giveInputsToGenerate(currentIndex);
 //this function generates the final score. 
 //add .result-container class to the finalResult button at submit time.
 function generateScoreHTML(){
+    let responseReply = '';
+    if(score === Questions.length){
+        responseReply = 'You Are The Goat';
+    }else{
+        responseReply = 'You Can Do Better, Loser 🫵';  
+    }
     let scoreHTML = `<h2 class="result">Your Score</h2>
         <p class="score-board">${score}/${Questions.length}</p>
-        <p class="response-statement">you are the goat</p>`
+        <p class="response-statement">${responseReply}</p>`
     let finalResult = document.querySelector('.questions-container');
     finalResult.classList.add('result-container');
     finalResult.innerHTML = scoreHTML;
