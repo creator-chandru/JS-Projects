@@ -1,6 +1,5 @@
 import {Questions} from './Quiz.js'
 
-const userAnswers = [];
 let score = 0;
 
 function shuffle(array){
@@ -51,8 +50,12 @@ let currentIndex = 0;
 function submitAction(currentIndex){
     const submitButton = document.querySelector('.submit');
     submitButton.addEventListener('click',()=>{
-        let userInput = document.querySelector(`input[name = question-${currentIndex + 1}]:checked`);
-        userAnswers.push(userInput.value);
+        let userInput = document.querySelector(`input[name = "question-${currentIndex + 1}"]:checked`);
+        const warning = document.querySelector('.nullcase');
+        warning.classList.remove('nullshown');
+        if(!userInput){
+            warning.classList.add('nullshown');
+        }
         if(userInput.value === currentQuestion.answer){
             score+=1;
         }
@@ -70,6 +73,7 @@ function giveInputsToGenerate(currentIndex){
     questionOptions = currentQuestion.options;
     generateHTML(currentIndex);
     submitAction(currentIndex);
+    resetAction(currentIndex);
 }
 
 giveInputsToGenerate(currentIndex);
@@ -79,8 +83,16 @@ giveInputsToGenerate(currentIndex);
 function generateScoreHTML(){
     let scoreHTML = `<h2 class="result">Your Score</h2>
         <p class="score-board">${score}/${Questions.length}</p>
-        <p class="response">you are the goat</p>`
+        <p class="response-statement">you are the goat</p>`
     let finalResult = document.querySelector('.questions-container');
     finalResult.classList.add('result-container');
     finalResult.innerHTML = scoreHTML;
+}
+
+function resetAction(currentIndex){
+    const resetButton = document.querySelector(`.reset`);
+    resetButton.addEventListener('click',()=>{
+        document.querySelectorAll(`input[name = "question-${currentIndex + 1}"]`)
+        .forEach((input) => input.checked = false);
+    });
 }

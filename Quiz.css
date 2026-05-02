@@ -107,7 +107,17 @@ a{
     font-size:4rem;
 }
 
-.response{
+.response-statement{
     text-transform:uppercase;
     font-size:2rem;
+}
+
+.nullcase{
+    font-size:2rem;
+    color:red;
+    display:none;
+}
+
+.nullshown{
+    display:block;
 }
