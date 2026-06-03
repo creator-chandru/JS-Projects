@@ -1,4 +1,4 @@
-import {Questions} from './quiz.js'
+import {Questions} from './Quiz.js'
 
 let score = 0;
 
