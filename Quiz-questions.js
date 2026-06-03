@@ -1,4 +1,4 @@
-import {Questions} from './Quiz.js'
+import {Questions} from './quiz.js'
 
 let score = 0;
 
@@ -85,7 +85,7 @@ function generateScoreHTML(){
     if(score === Questions.length){
         responseReply = 'You Are The Goat';
     }else{
-        responseReply = 'You Can Do Better, Loser 🫵';  
+        responseReply = 'You 🫵,Can Do Better';  
     }
     let scoreHTML = `<h2 class="result">Your Score</h2>
         <p class="score-board">${score}/${Questions.length}</p>
